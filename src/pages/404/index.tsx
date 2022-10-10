@@ -20,7 +20,7 @@ export default function Page404() {
           height="3rem"
           width="100%"
           sx={{
-            backgroundColor: 'primary.100',
+            backgroundColor: 'primary.main',
             display: 'flex'
           }}
         >
