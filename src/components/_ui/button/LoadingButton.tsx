@@ -4,7 +4,7 @@ import {
   LoadingButtonProps as ButtonProps
 } from '@mui/lab';
 
-type LoadingButtonProps = ButtonProps & {
+export type LoadingButtonProps = ButtonProps & {
   text: string;
 };
 const LoadingButton: React.FC<LoadingButtonProps> = ({ text, ...rest }) => {
@@ -22,7 +22,7 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({ text, ...rest }) => {
         borderRadius: '1rem',
         color: 'white',
         height: '3rem',
-        bgcolor: 'primary.100'
+        bgcolor: 'primary.main'
       }}
       {...rest}
     >
