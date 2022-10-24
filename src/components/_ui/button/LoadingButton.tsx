@@ -11,6 +11,7 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({ text, ...rest }) => {
   return (
     <Button
       variant="contained"
+      fullWidth
       sx={{
         mt: '4rem',
         mb: 2,
@@ -18,7 +19,6 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({ text, ...rest }) => {
         fontWeight: '500',
         fontSize: '1rem',
         lineHeight: '1.35rem',
-        width: '20.5rem',
         borderRadius: '1rem',
         color: 'white',
         height: '3rem',
