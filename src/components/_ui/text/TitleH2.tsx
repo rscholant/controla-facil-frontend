@@ -7,7 +7,7 @@ export const TitleH2: React.FC<TitleH2Props> = ({ children, sx, ...rest }) => {
     <Typography
       sx={{
         fontStyle: 'normal',
-        fontWeight: '500',
+        fontWeight: '600',
         lineHeight: '2rem',
         fontSize: { xs: '1rem', sm: '1rem', md: '1.2rem', lg: '1.5rem' },
         color: 'primary.100',
