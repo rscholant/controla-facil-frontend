@@ -1,5 +1,6 @@
+import { cpfValidation } from '@shared/services/utils';
 import * as yup from 'yup';
-import { cpfValidation } from '@shared/utils';
+
 import { type AnyObject } from 'yup/lib/types';
 
 export const yupCpfValidation = {

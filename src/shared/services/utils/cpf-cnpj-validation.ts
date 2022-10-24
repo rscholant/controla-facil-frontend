@@ -1,4 +1,4 @@
-import { onlyDigits } from '@shared/utils/only-digits';
+import { onlyDigits } from '@shared/services/utils/only-digits';
 import { cpf as cpfValidator, cnpj as cnpjValidator } from 'cpf-cnpj-validator';
 
 export const cpfValidation = (cpf: string): boolean => {

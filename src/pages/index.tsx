@@ -2,7 +2,7 @@ import React from 'react';
 import { Grid } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { LoginForm } from '@components/login/LoginForm';
+import { LoginForm } from '@components/login';
 
 const Home: NextPage = () => {
   return (
