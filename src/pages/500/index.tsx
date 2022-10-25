@@ -4,7 +4,7 @@ import Link from 'next/link';
 import LoadingButton from '@ui/button/LoadingButton';
 import Image from 'next/image';
 
-export default function Page404() {
+export default function Page500() {
   return (
     <Grid container height="100vh" width="100%" bgcolor="primary.500">
       <Grid item xs={12} md={12} component={Paper} elevation={6} square>
@@ -29,7 +29,7 @@ export default function Page404() {
               gap={2}
             >
               <Image
-                src="/images/pages/404/404.svg"
+                src="/images/pages/500/500.svg"
                 width="500px"
                 height="500px"
               />
@@ -41,7 +41,7 @@ export default function Page404() {
                 lineHeight="1.3rem"
                 textAlign="center"
               >
-                Página não encontrada ⚠️
+                Erro interno do servidor 👨🏻‍💻
               </Typography>
               <Typography
                 fontWeight="400"
@@ -50,7 +50,7 @@ export default function Page404() {
                 lineHeight="1.3rem"
                 textAlign="center"
               >
-                Não foi possível encontrar a página que você está procurando.
+                Oops, algo de errado não esta certo.
               </Typography>
             </Stack>
 

@@ -7,55 +7,34 @@ import { GridItemXs5, GridItemXs7 } from '@ui/grid';
 import { TitleH1, TitleH2 } from '@ui/text';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { signIn } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import * as yup from 'yup';
 
-export type ILoginFormData = {
+export type IForgotFormData = {
   email: string;
-  password: string;
 };
 
-export const loginFormValidationSchema: yup.SchemaOf<ILoginFormData> = yup
+export const forgotFormValidationData: yup.SchemaOf<IForgotFormData> = yup
   .object()
   .shape({
     email: yup
       .string()
       .email('Email invalido.')
-      .required('É necessário informar o email.'),
-    password: yup.string().required('É necessário informar a senha.')
+      .required('É necessário informar o email.')
   });
 
-export const LoginForm: React.FC = () => {
+export const ForgotForm: React.FC = () => {
   const formRef = useRef<FormHandles>(null);
-  const [isLoading, setIsLoading] = useState(false);
   const { push } = useRouter();
-  const submitData = async (data: ILoginFormData) => {
-    setIsLoading(true);
-    loginFormValidationSchema
+  const submitData = async (data: IForgotFormData) => {
+    forgotFormValidationData
       .validate(data, { abortEarly: false })
       .then(validatedData => {
-        signIn('credentials', {
-          redirect: false,
-          email: validatedData.email,
-          password: validatedData.password,
-          callbackUrl: `${window.location.origin}`
-        })
-          .then(res => {
-            setIsLoading(false);
-            if (res?.ok) {
-              push('/dashboard');
-            }
-          })
-          .catch(err => {
-            setIsLoading(false);
-            console.log(err);
-          });
+        console.warn(validatedData);
       })
       .catch((errorData: yup.ValidationError) => {
-        setIsLoading(false);
         const errors = translateErrorYup(errorData);
         formRef.current?.setErrors(errors);
       });
@@ -79,7 +58,7 @@ export const LoginForm: React.FC = () => {
             pl: '1rem'
           }}
         >
-          Bem vindo ao Controla fácil! 👋🏻
+          Parece que nos esquecemos de algo, não? 🤭
         </TitleH2>
         <Typography
           sx={{
@@ -93,7 +72,8 @@ export const LoginForm: React.FC = () => {
             color: 'primary.900'
           }}
         >
-          Faça login na sua conta e comece a aventura{' '}
+          Informe seu email para começarmos o processo de recuperação da sua
+          senha!
         </Typography>
 
         <Box sx={{ width: '100%', p: '1rem' }}>
@@ -105,8 +85,7 @@ export const LoginForm: React.FC = () => {
               }}
             >
               <TextField name="email" label="E-mail" type="email" />
-              <TextField name="password" label="Senha" type="password" />
-              <LoadingButton text="Entrar" type="submit" loading={isLoading} />
+              <LoadingButton text="Entrar" type="submit" />
               <Typography
                 sx={{
                   textAlign: 'right',
@@ -117,10 +96,10 @@ export const LoginForm: React.FC = () => {
                   cursor: 'pointer'
                 }}
                 onClick={() => {
-                  push('/forgot-password');
+                  push('/');
                 }}
               >
-                Perdeu sua senha?
+                Lembrou da senha?
               </Typography>
             </Stack>
           </Form>
@@ -137,7 +116,7 @@ export const LoginForm: React.FC = () => {
         }}
       >
         <Image
-          src="/images/pages/login/auth.svg"
+          src="/images/pages/forgot-password/forgot.svg"
           width="500px"
           height="500px"
         />

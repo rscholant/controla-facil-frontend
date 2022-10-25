@@ -11,7 +11,8 @@ export const theme = createTheme({
       100: '#418FBF',
       200: '#3B48CC',
       300: '#3EC4D6',
-      400: '#3BCCB6'
+      400: '#3BCCB6',
+      900: '#666'
     },
     error: {
       main: '#c70505',

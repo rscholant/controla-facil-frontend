@@ -19,7 +19,7 @@ const LoadingButton: React.FC<LoadingButtonProps> = ({ text, ...rest }) => {
         fontWeight: '500',
         fontSize: '1rem',
         lineHeight: '1.35rem',
-        borderRadius: '1rem',
+        borderRadius: '0.5rem',
         color: 'white',
         height: '3rem',
         bgcolor: 'primary.main'
