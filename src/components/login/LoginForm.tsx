@@ -1,16 +1,16 @@
 import { SignInLayout } from '@components/Layout';
-import { Box, Stack } from '@mui/material';
+import { Box, Stack, Typography } from '@mui/material';
 import { translateErrorYup } from '@shared/services/yup-validation.service';
 import LoadingButton from '@ui/button/LoadingButton';
 import { TextField } from '@ui/form';
-import { GridItemTwo, GridItemXs6 } from '@ui/grid';
-import { TitleH2, TitleH3 } from '@ui/text';
+import { GridItemXs5, GridItemXs7 } from '@ui/grid';
+import { TitleH1, TitleH2 } from '@ui/text';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as yup from 'yup';
 
 export type ILoginFormData = {
@@ -29,9 +29,18 @@ export const loginFormValidationSchema: yup.SchemaOf<ILoginFormData> = yup
   });
 
 export const LoginForm: React.FC = () => {
-  const formRef = useRef<FormHandles>(null);
   const { push } = useRouter();
+  const formRef = useRef<FormHandles>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  useEffect(() => {
+    getSession().then(result => {
+      if (result && new Date(result.expires).getTime() > new Date().getTime()) {
+        push('/dashboard');
+      }
+    });
+  }, []);
   const submitData = async (data: ILoginFormData) => {
+    setIsLoading(true);
     loginFormValidationSchema
       .validate(data, { abortEarly: false })
       .then(validatedData => {
@@ -42,41 +51,57 @@ export const LoginForm: React.FC = () => {
           callbackUrl: `${window.location.origin}`
         })
           .then(res => {
+            setIsLoading(false);
             if (res?.ok) {
               push('/dashboard');
             }
           })
           .catch(err => {
+            setIsLoading(false);
             console.log(err);
           });
       })
       .catch((errorData: yup.ValidationError) => {
+        setIsLoading(false);
         const errors = translateErrorYup(errorData);
         formRef.current?.setErrors(errors);
       });
   };
   return (
     <SignInLayout>
-      <GridItemXs6>
-        <TitleH2
+      <GridItemXs7>
+        <TitleH1
           sx={{
             textAlign: 'center',
             color: 'primary.main',
-            mb: '0.5rem'
+            mb: '1rem'
           }}
         >
-          Entrar!
-        </TitleH2>
-        <TitleH3
+          📑 Controla fácil
+        </TitleH1>
+        <TitleH2
           sx={{
-            textAlign: 'center',
-            pl: { xs: '1rem', sm: '1rem', md: '0rem' },
-            pr: { xs: '1rem', sm: '1rem', md: '0rem' },
-            width: '100%'
+            textAlign: 'left',
+            color: 'primary.main',
+            pl: '1rem'
           }}
         >
-          Olá! Identifique-se para acessar o Controla fácil.
-        </TitleH3>
+          Bem vindo ao Controla fácil! 👋🏻
+        </TitleH2>
+        <Typography
+          sx={{
+            textAlign: 'left',
+            pl: '1rem',
+            width: '100%',
+            fontStyle: 'italic',
+            fontWeight: '400',
+
+            fontSize: '0.8rem',
+            color: 'gray.700'
+          }}
+        >
+          Faça login na sua conta e comece a aventura{' '}
+        </Typography>
 
         <Box sx={{ width: '100%', p: '1rem' }}>
           <Form ref={formRef} onSubmit={submitData}>
@@ -88,23 +113,42 @@ export const LoginForm: React.FC = () => {
             >
               <TextField name="email" label="E-mail" type="email" />
               <TextField name="password" label="Senha" type="password" />
-              <LoadingButton text="Entrar" type="submit" />
+              <LoadingButton text="Entrar" type="submit" loading={isLoading} />
+              <Typography
+                sx={{
+                  textAlign: 'right',
+                  width: '100%',
+                  fontWeight: '500',
+                  fontSize: '1rem',
+                  color: 'primary.100',
+                  cursor: 'pointer'
+                }}
+                onClick={() => {
+                  push('/forgot-password');
+                }}
+              >
+                Perdeu sua senha?
+              </Typography>
             </Stack>
           </Form>
         </Box>
-      </GridItemXs6>
-      <GridItemXs6
+      </GridItemXs7>
+      <GridItemXs5
         sx={{
           width: '100%',
           height: '100%',
           display: {
             xs: 'none',
-            md: 'grid'
+            lg: 'grid'
           }
         }}
       >
-        <Image src="/auth.svg" width="550px" height="550px" />
-      </GridItemXs6>
+        <Image
+          src="/images/pages/login/auth.svg"
+          width="500px"
+          height="500px"
+        />
+      </GridItemXs5>
     </SignInLayout>
   );
 };

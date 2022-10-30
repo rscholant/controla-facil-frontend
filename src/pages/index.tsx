@@ -1,8 +1,8 @@
 import React from 'react';
-import { Grid } from '@mui/material';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { LoginForm } from '@components/login';
+import { GridItemOne } from '@ui/grid';
 
 const Home: NextPage = () => {
   return (
@@ -16,13 +16,9 @@ const Home: NextPage = () => {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <Grid
-        container
-        width="100%"
-        sx={{ height: { xs: '80vh', sm: '80vh', md: '100vh' } }}
-      >
+      <GridItemOne>
         <LoginForm />
-      </Grid>
+      </GridItemOne>
     </div>
   );
 };

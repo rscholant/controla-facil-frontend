@@ -8,15 +8,14 @@ export const SignInLayout: React.FC<SignInLayoutProps> = ({ children }) => {
     <Grid
       item
       xs={12}
-      component={Paper}
       display="flex"
       alignItems="center"
       justifyContent="center"
-      flexDirection="column"
-      elevation={0}
-      sx={{ bgcolor: 'primary.100', height: '100vh' }}
+      sx={{ bgcolor: 'primary.main', height: '100vh' }}
     >
-      <Paper
+      <Grid
+        container
+        component={Paper}
         sx={{
           display: 'flex',
           alignItems: 'center',
@@ -28,7 +27,7 @@ export const SignInLayout: React.FC<SignInLayoutProps> = ({ children }) => {
         elevation={12}
       >
         {children}
-      </Paper>
+      </Grid>
     </Grid>
   );
 };

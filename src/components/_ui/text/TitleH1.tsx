@@ -8,7 +8,13 @@ export const TitleH1: React.FC<TitleH1Props> = ({ sx, children, ...rest }) => {
       sx={{
         fontStyle: 'normal',
         fontWeight: '600',
-        fontSize: { xs: '2rem', sm: '2rem', md: '2.5rem', lg: '4rem' },
+        fontSize: {
+          xs: '2rem',
+          sm: '2rem',
+          md: '2.5rem',
+          lg: '3rem',
+          xl: '4rem'
+        },
         color: 'primary.main',
         ...sx
       }}
