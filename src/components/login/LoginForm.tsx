@@ -7,10 +7,10 @@ import { GridItemXs5, GridItemXs7 } from '@ui/grid';
 import { TitleH1, TitleH2 } from '@ui/text';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
-import { signIn } from 'next-auth/react';
+import { signIn, getSession } from 'next-auth/react';
 import Image from 'next/image';
 import { useRouter } from 'next/router';
-import React, { useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import * as yup from 'yup';
 
 export type ILoginFormData = {
@@ -29,9 +29,16 @@ export const loginFormValidationSchema: yup.SchemaOf<ILoginFormData> = yup
   });
 
 export const LoginForm: React.FC = () => {
+  const { push } = useRouter();
   const formRef = useRef<FormHandles>(null);
   const [isLoading, setIsLoading] = useState(false);
-  const { push } = useRouter();
+  useEffect(() => {
+    getSession().then(result => {
+      if (result && new Date(result.expires).getTime() > new Date().getTime()) {
+        push('/dashboard');
+      }
+    });
+  }, []);
   const submitData = async (data: ILoginFormData) => {
     setIsLoading(true);
     loginFormValidationSchema
@@ -90,7 +97,7 @@ export const LoginForm: React.FC = () => {
             fontWeight: '400',
 
             fontSize: '0.8rem',
-            color: 'primary.900'
+            color: 'gray.700'
           }}
         >
           Faça login na sua conta e comece a aventura{' '}

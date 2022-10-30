@@ -11,7 +11,7 @@ export const SignInLayout: React.FC<SignInLayoutProps> = ({ children }) => {
       display="flex"
       alignItems="center"
       justifyContent="center"
-      sx={{ bgcolor: 'primary.100', height: '100vh' }}
+      sx={{ bgcolor: 'primary.main', height: '100vh' }}
     >
       <Grid
         container
