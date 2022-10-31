@@ -13,7 +13,6 @@ export default function Page404() {
           display="flex"
           alignItems="center"
           justifyContent="center"
-          mt="15rem"
         >
           <Box
             width="28rem"

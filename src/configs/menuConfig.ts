@@ -1,5 +1,4 @@
-// ** Icon imports
-import { HomeOutline } from 'mdi-material-ui';
+import { Domain, HomeOutline } from 'mdi-material-ui';
 
 export const menuConfig = (): any => {
   return [
@@ -7,6 +6,11 @@ export const menuConfig = (): any => {
       title: 'Dashboard',
       icon: HomeOutline,
       path: '/dashboard'
+    },
+    {
+      title: 'Empresa',
+      icon: Domain,
+      path: '/company'
     }
   ];
 };
