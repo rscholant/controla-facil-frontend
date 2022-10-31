@@ -11,6 +11,7 @@ import React from 'react';
 import { Menu, Magnify } from 'mdi-material-ui';
 import Image from 'next/image';
 import { ModeToggler } from '@components/_ui/toggler';
+import { UserDropdown } from '@components/shared-components';
 export type VerticalAppBarContentProps = {
   hidden: boolean;
   settings: Settings;
@@ -46,23 +47,13 @@ export const VerticalAppBarContent: React.FC<VerticalAppBarContentProps> =
               <Menu />
             </IconButton>
           ) : null}
-          <TextField
-            size="small"
-            sx={{ '& .MuiOutlinedInput-root': { borderRadius: 4 } }}
-            InputProps={{
-              startAdornment: (
-                <InputAdornment position="start">
-                  <Magnify fontSize="small" />
-                </InputAdornment>
-              )
-            }}
-          />
         </Box>
         <Box
           className="actions-right"
           sx={{ display: 'flex', alignItems: 'center' }}
         >
           <ModeToggler settings={settings} saveSettings={saveSettings} />
+          <UserDropdown />
         </Box>
       </Box>
     );
