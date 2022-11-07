@@ -1,14 +1,14 @@
 import React, { useState } from 'react';
-import { Navigation } from '@components/navigation';
+import { Navigation } from '@core/components/navigation';
 import themeConfig from '@configs/themeConfig';
 import { LayoutProps } from '@core/layouts';
 import {
   ContentWrapper,
   MainContentWrapper,
   VerticalLayoutWrapper
-} from '@ui/wrapper';
-import { VerticalAppBar } from '@ui/appBar';
-import { ScrollToTop } from '@ui/scroll-to-top';
+} from '@core/components/_ui/wrapper';
+import { VerticalAppBar } from '@core/components/_ui/appBar';
+import { ScrollToTop } from '@core/components/_ui/scroll-to-top';
 import { Fab } from '@mui/material';
 import { ArrowUp } from 'mdi-material-ui';
 

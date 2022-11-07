@@ -1,7 +1,7 @@
 import { Settings } from '@core/context';
 import { styled } from '@mui/system';
-import { MenuHeaderTitle } from '@ui/text';
-import { MenuHeaderWrapper } from '@ui/wrapper';
+import { MenuHeaderTitle } from '@core/components/_ui/text';
+import { MenuHeaderWrapper } from '@core/components/_ui/wrapper';
 import Link from 'next/link';
 import React, { ReactNode } from 'react';
 export type VerticalNavHeaderProps = {

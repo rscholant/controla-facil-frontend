@@ -10,8 +10,8 @@ import {
 import React from 'react';
 import { Menu, Magnify } from 'mdi-material-ui';
 import Image from 'next/image';
-import { ModeToggler } from '@components/_ui/toggler';
-import { UserDropdown } from '@components/shared-components';
+import { ModeToggler } from '@core/components/_ui/toggler';
+import { UserDropdown } from '@core/components/shared-components';
 export type VerticalAppBarContentProps = {
   hidden: boolean;
   settings: Settings;

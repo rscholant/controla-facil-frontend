@@ -1,8 +1,8 @@
 import React from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
-import { GridItemOne } from '@ui/grid';
-import { ForgotForm } from '@components/forgot-password';
+import { GridItemOne } from '@core/components/_ui/grid';
+import { ForgotForm } from '@core/components/forgot-password';
 
 const Home: NextPage = () => {
   return (

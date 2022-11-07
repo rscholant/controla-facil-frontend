@@ -5,7 +5,7 @@ import {
 } from '@mui/material';
 import { useField } from '@unform/core';
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-import { ShowPasswordIcon } from '@ui/icons';
+import { ShowPasswordIcon } from '@core/components/_ui/icons';
 
 export type TextFieldProps = FieldProps & {
   name: string;

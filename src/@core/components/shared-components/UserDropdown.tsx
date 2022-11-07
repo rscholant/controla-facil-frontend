@@ -1,6 +1,6 @@
 import { BigHead } from '@bigheads/core';
 import { Badge, Box, Divider, Menu, MenuItem, Typography } from '@mui/material';
-import { BadgeContentSpan } from '@ui/span';
+import { BadgeContentSpan } from '@core/components/_ui/span';
 import { useRouter } from 'next/router';
 import React, { Fragment, SyntheticEvent, useState } from 'react';
 import { useSession, signOut } from 'next-auth/react';

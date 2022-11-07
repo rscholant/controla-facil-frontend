@@ -2,7 +2,7 @@ import React from 'react';
 import {
   VerticalNavSectionTitle,
   VerticalNavLink
-} from '@components/navigation';
+} from '@core/components/navigation';
 import { Settings } from '@core/context';
 import { NavLink, NavSectionTitle, VerticalNavItemsType } from '@core/layouts';
 

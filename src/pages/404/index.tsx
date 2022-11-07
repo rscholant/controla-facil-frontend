@@ -1,7 +1,7 @@
 import React from 'react';
 import { Box, Grid, Paper, Stack, Typography } from '@mui/material';
 import Link from 'next/link';
-import LoadingButton from '@ui/button/LoadingButton';
+import LoadingButton from '@core/components/_ui/button/LoadingButton';
 import Image from 'next/image';
 
 export default function Page404() {

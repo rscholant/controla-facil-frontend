@@ -7,9 +7,9 @@ import Document, {
   DocumentInitialProps
 } from 'next/document';
 import createEmotionServer from '@emotion/server/create-instance';
-import { createEmotionCache } from '@styles/index';
 import { ServerStyleSheets } from '@mui/styles';
 import { ServerStyleSheet } from 'styled-components';
+import { createEmotionCache } from '@core/theme';
 
 export default class MyDocument extends Document {
   static async getInitialProps(ctx: any): Promise<DocumentInitialProps> {

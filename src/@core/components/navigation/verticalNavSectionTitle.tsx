@@ -1,7 +1,7 @@
 import React from 'react';
-import { ListSubheader } from '@components/_ui/list';
+import { ListSubheader } from '@core/components/_ui/list';
 import { Divider, useTheme } from '@mui/material';
-import { HeaderText } from '@ui/text';
+import { HeaderText } from '@core/components/_ui/text';
 import { NavSectionTitle } from '@core/layouts';
 export type VerticalNavSectionTitleProps = {
   item: NavSectionTitle;

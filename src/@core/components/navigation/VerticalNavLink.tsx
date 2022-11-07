@@ -10,8 +10,8 @@ import Box, { BoxProps } from '@mui/material/Box';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
 import { handleURLQueries, NavLink } from '@core/layouts';
-import { MenuNavLink } from '@ui/menu';
-import { UserIcon } from '@ui/icons';
+import { MenuNavLink } from '@core/components/_ui/menu';
+import { UserIcon } from '@core/components/_ui/icons';
 import themeConfig from '@configs/themeConfig';
 import { Settings } from '@core/context';
 

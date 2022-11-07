@@ -1,11 +1,11 @@
 import React from 'react';
 import { SessionProvider, signIn, useSession } from 'next-auth/react';
 import { AppProps } from './App.props';
-import { VerticalLayout } from '@components/Layout';
+import { VerticalLayout } from '@core/components/Layout';
 import { useSettings } from '@core/hooks';
 import { Theme, useMediaQuery } from '@mui/material';
 import { menuConfig } from '@configs/menuConfig';
-import { VerticalAppBarContent } from '@ui/appBar';
+import { VerticalAppBarContent } from '@core/components/_ui/appBar';
 
 function Auth({ children }: any) {
   const { data: session, status } = useSession();

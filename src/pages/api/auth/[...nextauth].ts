@@ -1,6 +1,7 @@
 import { api } from '@shared/services';
 import NextAuth from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
+import jwt from 'jsonwebtoken';
 export default NextAuth({
   providers: [
     CredentialProvider({
@@ -49,12 +50,19 @@ export default NextAuth({
       return session;
     }
   },
-  secret: 'jwttoken',
+  secret: process.env['NEXTAUTH_SECRET'],
   pages: {
     signIn: '/',
     error: '/'
   },
+  session: { strategy: 'jwt', maxAge: 60 * 8 },
   jwt: {
-    secret: 'jwttoken'
+    encode: params => {
+      return jwt.sign(params.token as any, params.secret);
+    },
+    decode: params => {
+      return jwt.decode(params.token as any, { json: true });
+    },
+    secret: process.env['NEXTAUTH_SECRET']
   }
 });

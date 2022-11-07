@@ -1,15 +1,11 @@
 import React from 'react';
-import { CacheProvider, EmotionCache } from '@emotion/react';
-import { createEmotionCache } from '@styles/createEmotionCache';
-import { CssBaseline } from '@mui/material';
-import { ToastContainer } from 'react-toastify';
+import { CacheProvider } from '@emotion/react';
+import { createEmotionCache } from '@core/theme';
 import { AppProps, GlobalContext } from '@core/context';
-import { SessionProvider, signIn, useSession } from 'next-auth/react';
 import Head from 'next/head';
 import themeConfig from 'src/configs/themeConfig';
 import { Router } from 'next/router';
 import NProgress from 'nprogress';
-import { NextPage } from 'next';
 
 const clientSideEmotionCache = createEmotionCache();
 

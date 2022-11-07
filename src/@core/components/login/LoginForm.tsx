@@ -1,10 +1,10 @@
-import { SignInLayout } from '@components/Layout';
+import { SignInLayout } from '@core/components/Layout';
 import { Box, Stack, Typography } from '@mui/material';
 import { translateErrorYup } from '@shared/services/yup-validation.service';
-import LoadingButton from '@ui/button/LoadingButton';
-import { TextField } from '@ui/form';
-import { GridItemXs5, GridItemXs7 } from '@ui/grid';
-import { TitleH1, TitleH2 } from '@ui/text';
+import LoadingButton from '@core/components/_ui/button/LoadingButton';
+import { TextField } from '@core/components/_ui/form';
+import { GridItemXs5, GridItemXs7 } from '@core/components/_ui/grid';
+import { TitleH1, TitleH2 } from '@core/components/_ui/text';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import { signIn, getSession } from 'next-auth/react';

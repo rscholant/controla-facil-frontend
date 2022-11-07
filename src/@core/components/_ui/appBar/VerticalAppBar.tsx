@@ -1,8 +1,8 @@
 import React, { ReactNode } from 'react';
 import { Settings } from '@core/context';
 import { useTheme } from '@mui/material';
-import { AppBar } from '@ui/appBar';
-import { TollBar } from '@components/_ui/tollBar';
+import { AppBar } from '@core/components/_ui/appBar';
+import { TollBar } from '@core/components/_ui/tollBar';
 export type VerticalAppBarProps = {
   hidden: boolean;
   settings: Settings;

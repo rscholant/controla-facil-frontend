@@ -16,12 +16,12 @@
     "incremental": true,
     "baseUrl": "./",
     "paths": {
-      "@ui/*": ["./src/components/_ui/*"],
-      "@components/*": ["./src/components/*"],
+      "@ui/*": ["src/@core/components/_ui/*"],
+      "@components/*": ["src/@core/components/*"],
       "@contexts/*": ["./src/contexts/*"],
       "@hooks/*": ["./src/hooks/*"],
       "@pages/*": ["./src/pages/*"],
-      "@shared/*": ["./src/shared/*"],
+      "@shared/*": ["src/@core/shared/*"],
       "@styles/*": ["./src/styles/*"],
       "@core/*": ["./src/@core/*"],
       "@configs/*": ["./src/configs/*"]

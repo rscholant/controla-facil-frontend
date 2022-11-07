@@ -2,12 +2,15 @@
 import { Box, List, useTheme } from '@mui/material';
 import PerfectScrollbar from 'react-perfect-scrollbar';
 import React, { ReactNode, useRef, useState } from 'react';
-import { VerticalNavHeader, VerticalNavItems } from '@components/navigation';
-import { BoxForShadow } from '@ui/box';
+import {
+  VerticalNavHeader,
+  VerticalNavItems
+} from '@core/components/navigation';
+import { BoxForShadow } from '@core/components/_ui/box';
 import { hexToRGBA } from '@shared/services/utils';
 import { Settings } from '@core/context';
 import { VerticalNavItemsType } from '@core/layouts';
-import { Drawer } from '@ui/drawer';
+import { Drawer } from '@core/components/_ui/drawer';
 
 export type NavigationProps = {
   hidden: boolean;
