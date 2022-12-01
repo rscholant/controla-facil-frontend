@@ -17,7 +17,7 @@ export default NextAuth({
       authorize: async (credentials: any) => {
         try {
           const user = await api.post('/auth/login', {
-            email: credentials.email,
+            email: credentials.email.toLowerCase(),
             password: credentials.password
           });
 
