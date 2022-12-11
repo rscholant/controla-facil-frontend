@@ -32,10 +32,10 @@ export const BasicTable: React.FC<BasicTableProps> = ({
           </TableRow>
         </TableHead>
         <TableBody>
-          {data.map((item, index) => {
+          {data?.map((item: any, index: number) => {
             return (
               <TableRow key={index}>
-                {Object.values(item).map((subItem, subIndex) => (
+                {Object.values(item).map((subItem: any, subIndex) => (
                   <TableCell key={subIndex}>{subItem}</TableCell>
                 ))}
               </TableRow>

@@ -1,12 +1,13 @@
 import axios from 'axios';
+import { parseCookies } from 'nookies';
 
 function getAPIClient(ctx?: any) {
   const url = process.env.BACKEND_URL;
-  console.log('🚀 ~ file: api.ts ~ line 5 ~ getAPIClient ~ url', url);
-
-  return axios.create({
+  const axiosReturn = axios.create({
     baseURL: url
   });
+
+  return axiosReturn;
 }
 
 export const api = getAPIClient();

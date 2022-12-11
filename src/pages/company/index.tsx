@@ -1,67 +1,35 @@
 import { CompanyDataTable } from '@core/components/company';
-import { Pagination } from '@core/components/_ui/pagination';
-import { BasicTable } from '@core/components/_ui/table/BasicTable';
 import { api } from '@shared/services';
 import { GetServerSideProps } from 'next';
-import { getToken, encode } from 'next-auth/jwt';
-import { getSession, getCsrfToken, getProviders } from 'next-auth/react';
+import { unstable_getServerSession } from 'next-auth';
+import { getToken } from 'next-auth/jwt';
 import React from 'react';
 import { SWRConfig, unstable_serialize } from 'swr';
+import { authOptions } from '../api/auth/[...nextauth]';
+
 export type CompanyProps = {
-  token: string;
-  fallback: any;
+  session: any;
 };
-const Company: React.FC<CompanyProps> & { auth: boolean } = ({
-  fallback,
-  token
-}) => {
+
+const Company: React.FC<CompanyProps> & { auth: boolean } = ({ session }) => {
+  console.log('🚀 ~ file: index.tsx:15 ~ session', session);
   return (
     <>
-      <SWRConfig value={{ fallback }}>
-        <CompanyDataTable token={token} />
-      </SWRConfig>
+      <CompanyDataTable />
     </>
   );
 };
 Company.auth = true;
 
 export const getServerSideProps: GetServerSideProps = async context => {
-  const { query, req } = context;
-
-  let page = 1;
-  if (query.page) {
-    page = parseInt(query.page as string, 10);
-  }
-
-  try {
-    const secret = process.env['NEXTAUTH_SECRET'];
-    const token = await getToken({ req, secret, raw: true });
-
-    const { data } = await api.get('/company', {
-      params: {
-        page
-      },
-      headers: { Authorization: `Bearer ${token}` }
-    });
-
-    return {
-      props: {
-        token,
-        fallback: {
-          [unstable_serialize([
-            '/company',
-            { page },
-            { headers: { Authorization: `Bearer ${token}` } }
-          ])]: {
-            data: data.data ?? data,
-            count: data.count
-          }
-        }
-      }
-    };
-  } catch (e) {
-    return { props: { token: undefined, fallback: undefined } };
-  }
+  return {
+    props: {
+      session: await unstable_getServerSession(
+        context.req,
+        context.res,
+        authOptions
+      )
+    }
+  };
 };
-
 export default Company;

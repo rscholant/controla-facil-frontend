@@ -1,21 +1,22 @@
 import { Pagination } from '@core/components/_ui/pagination';
 import { BasicTable } from '@core/components/_ui/table';
 import { useSWR } from '@core/hooks';
+import { useSession } from 'next-auth/react';
+import { getToken } from 'next-auth/jwt';
 
-import React from 'react';
+import React, { useState } from 'react';
 
-export type CompanyDataTableProps = {
-  token: string;
-};
+export const CompanyDataTable: React.FC = () => {
+  const [page, setPage] = useState(1);
+  const session = useSession();
+  console.log('🚀 ~ file: CompanyDataTable.tsx:12 ~ session', session);
 
-export const CompanyDataTable: React.FC<CompanyDataTableProps> = ({
-  token
-}) => {
   const { data } = useSWR(
     '/company',
-    { page: 1 },
-    { headers: { Authorization: `Bearer ${token}` } }
+    { page },
+    { headers: { Authorization: `Bearer ` } }
   );
+  console.warn(data, 'aqui');
   return (
     <>
       <BasicTable
@@ -29,7 +30,11 @@ export const CompanyDataTable: React.FC<CompanyDataTableProps> = ({
           };
         })}
       />
-      <Pagination count={10} page={5} onChange={item => console.log(item)} />
+      <Pagination
+        count={data?.count}
+        page={page}
+        onChange={item => setPage(Number(item))}
+      />
     </>
   );
 };

@@ -1,8 +1,9 @@
 import { api } from '@shared/services';
-import NextAuth from 'next-auth';
+import NextAuth, { NextAuthOptions } from 'next-auth';
 import CredentialProvider from 'next-auth/providers/credentials';
 import jwt from 'jsonwebtoken';
-export default NextAuth({
+
+export const authOptions: NextAuthOptions = {
   providers: [
     CredentialProvider({
       name: 'credentials',
@@ -22,7 +23,7 @@ export default NextAuth({
           });
 
           if (user) {
-            const userAccount = user.data.user;
+            const userAccount = { ...user.data.user, image: '' };
 
             return userAccount;
           } else {
@@ -50,11 +51,6 @@ export default NextAuth({
       return session;
     }
   },
-  secret: process.env['NEXTAUTH_SECRET'],
-  pages: {
-    signIn: '/',
-    error: '/'
-  },
   session: { strategy: 'jwt', maxAge: 60 * 8 },
   jwt: {
     encode: params => {
@@ -65,4 +61,6 @@ export default NextAuth({
     },
     secret: process.env['NEXTAUTH_SECRET']
   }
-});
+};
+
+export default NextAuth(authOptions);

@@ -42,16 +42,30 @@ function Auth({ children }: any) {
   return <div>Loading...</div>;
 }
 
-export function AuthContext({ Component, pageProps }: AppProps) {
+export function AuthContext({
+  Component,
+  pageProps: { session, ...pageProps }
+}: AppProps) {
+  /* const { settings, saveSettings } = useSettings();
+
+  const hidden = useMediaQuery((theme: Theme) => theme.breakpoints.down('lg'));
+ <VerticalLayout
+        hidden={hidden}
+        settings={settings}
+        saveSettings={saveSettings}
+        verticalNavItems={menuConfig()}
+        verticalAppBarContent={props => (
+          <VerticalAppBarContent
+            hidden={hidden}
+            settings={settings}
+            saveSettings={saveSettings}
+            toggleNavVisibility={props.toggleNavVisibility}
+          />
+        )}
+      > */
   return (
-    <SessionProvider session={(pageProps as any).session} refetchInterval={0}>
-      {(Component as any).auth ? (
-        <Auth>
-          <Component {...pageProps} />
-        </Auth>
-      ) : (
-        <Component {...pageProps} />
-      )}
+    <SessionProvider session={session}>
+      <Component {...pageProps} />
     </SessionProvider>
   );
 }
